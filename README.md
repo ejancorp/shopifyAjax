@@ -13,7 +13,7 @@ console.log(data);
 > $.shopifyAjax('addCart', {
 data:{
   quantity: 2,
-  id: 794864229
+  id: 3162199619
 },
 done: function (data) {
 console.log(data);
@@ -21,20 +21,12 @@ console.log(data);
 });
 
 - Update Cart Item
-> $.shopifyAjax('updateCart', {
-data:{
-  quantity: 2,
-  id: 794864229
-},
-done: function (data) {
-console.log(data);
-},
-});
+> $.shopifyAjax('updateCart', { data:{ 3162199619: 10 }, done: function (data) { console.log(data); }, });
 
 - Remove Cart Item
 > $.shopifyAjax('removeCart', {
 data:{
-  id: 794864229
+  id: [3162199619, 3162199612, 3162199616],
 },
 done: function (data) {
 console.log(data);

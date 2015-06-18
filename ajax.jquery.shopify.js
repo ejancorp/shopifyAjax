@@ -18,7 +18,7 @@
             method: 'post',
         },
         clear: {
-            url: '/cart/update.js',
+            url: '/cart/clear.js',
             method: 'post',
         },
     };
@@ -49,16 +49,36 @@
             },
 
             removeCart: function () {
+                settings.data = _sh.alterRemoveData(settings.data);
                 _sh.shopRequest(endPoints.remove.url, endPoints.remove.method, settings);
             },
 
             updateCart: function () {
+                settings.data = _sh.alterUpdateData(settings.data);
                 _sh.shopRequest(endPoints.update.url, endPoints.update.method, settings);
             },
 
             clearCart: function () {
                 _sh.shopRequest(endPoints.clear.url, endPoints.clear.method, settings);
             },
+        };
+
+        this.alterUpdateData = function (data) {
+            return {
+                updates: data,
+            };
+        };
+
+        this.alterRemoveData = function (data) {
+
+            var rt = {};
+            $.each(data.id, function (i, v) {
+                rt[v] = 0;
+            });
+            console.log(rt);
+            return {
+                updates: rt,
+            };
         };
 
         this.shopRequest = function (url, method, options) {
